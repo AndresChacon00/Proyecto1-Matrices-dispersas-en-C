@@ -54,12 +54,8 @@ Columnas *add_col(Filas *filap ,float val,int i,int j){   //Agrega una nueva col
         filap->end = filap->lista;
         return filap->lista;
         }
-    //printf("Paso el if de add_col\n");
-    //Columnas *tmp;
-    //for(tmp = filap->lista; tmp->sig != NULL; tmp = tmp->sig);
     filap->end->sig = new_col(val,i,j);
     filap->end = filap->end->sig;
-   // printf("añadio broma al final\n");
     return filap->lista;
 }
 
@@ -90,7 +86,7 @@ Matriz AsignarElemento(int i, int j, float x, Matriz M){ //Asigna un elemento en
     }
 
     Filas *tmp = M.inicio, *prev = NULL;
-    for(; tmp != NULL && tmp->i <= i; tmp = tmp->sig){        //Busca la Fila en la que se va a añadir el elemento (Insertar Ordenado)
+    for(; tmp != NULL && tmp->i <= i; tmp = tmp->sig){        //Busca la Fila en la que se va a aÃ±adir el elemento (Insertar Ordenado)
         prev =tmp;
         if (tmp->i == i){
             if(j < tmp->lista->j){    //Si dicha fila se encuentra, ahora hay que buscar la columna (Insertar Ordenado)
@@ -99,7 +95,7 @@ Matriz AsignarElemento(int i, int j, float x, Matriz M){ //Asigna un elemento en
                 tmp->lista = newp2;
                 return M;
             }
-            //añadir columna ordenada
+            //aÃ±adir columna ordenada
             Columnas *tmp2 = tmp->lista, *prev2 = NULL;
             for(; tmp2 != NULL && tmp2->j <= j; tmp2 = tmp2->sig){
 
@@ -297,7 +293,7 @@ Matriz Sumar (Matriz M1, Matriz M2){  //Devuelve el resultado de la suma de dos 
                 F3 = add_fil(F3, C1->i);
                 F3 = F3->sig;
             }
-            F3->lista = add_col(F3, C1->valor, C1->i, C1->j); //C1 se añade y avanza
+            F3->lista = add_col(F3, C1->valor, C1->i, C1->j); //C1 se aÃ±ade y avanza
             if(C1->sig == NULL){
                     if(F1->sig != NULL){
                         F1 = F1->sig;
@@ -391,10 +387,10 @@ Matriz Trasponer (Matriz M){
 
                 Filas *tmp3 = M2.inicio, *prev = NULL;
                 int encontro = 0;
-                for(; tmp3 != NULL && tmp3->i <= tmp2->j; tmp3 = tmp3->sig){              //Busca la Fila en la que se va a añadir el elemento (Insertar Ordenado)
+                for(; tmp3 != NULL && tmp3->i <= tmp2->j; tmp3 = tmp3->sig){              //Busca la Fila en la que se va a aÃ±adir el elemento (Insertar Ordenado)
                     prev =tmp3;
                     if (tmp3->i == tmp2->j){
-                //añadir columna al final
+                //aÃ±adir columna al final
                         tmp3->lista = add_col(tmp3,tmp2->valor,tmp2->j,tmp2->i);
                         encontro = 1;
                     }
@@ -416,7 +412,7 @@ Matriz Trasponer (Matriz M){
     return M2;
 }
 Matriz Producto(Matriz A, Matriz B){ //Devuelve el producto de dos matrices
-    Matriz BT = Trasponer(B);
+    Matriz BT = Trasponer(B); //se transpone la segunda matriz
     Matriz C = {NULL, A.filas, B.columnas};
     Filas *tmpC = NULL;
     if (A.inicio == NULL || B.inicio == NULL) return C;
@@ -427,7 +423,7 @@ Matriz Producto(Matriz A, Matriz B){ //Devuelve el producto de dos matrices
         for(;tmpB != NULL; tmpB = tmpB->sig){
             Columnas *C1 = tmpA->lista, *C2 = tmpB->lista;
             float acumulador = 0;
-
+                                                //se multiplican linealmente
             while(C1 != NULL && C2 != NULL){
                 if(C1->j == C2->j){
                     acumulador += C1->valor * C2->valor;
@@ -440,7 +436,7 @@ Matriz Producto(Matriz A, Matriz B){ //Devuelve el producto de dos matrices
                         C2 = C2->sig;
             }
 
-            if(acumulador!=0){
+            if(acumulador!=0){//si el acumulador es distinto de cero se agrega
                 if(tmpC == NULL){
                     tmpC = new_fil(tmpA->i);
                     tmpC->lista = add_col(tmpC,acumulador,tmpA->i,tmpB->i);
