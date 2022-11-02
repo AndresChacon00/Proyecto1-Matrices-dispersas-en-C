@@ -37,7 +37,7 @@ int main(){
                 printf("ObtenerElemento: Ingrese i j\n");
                 int i,j;
                 scanf("%i %i",&i,&j);
-                printf("Elemento en %i %i: %f\n",i,j,ObtenerElemento(tabla1, i, j));
+                printf("Elemento en %i %i: %.4f\n",i,j,ObtenerElemento(tabla1, i, j));
             }
             if (opcion == 2){
                 printf("AsignarElemento: Ingrese i j valor\n");
@@ -96,7 +96,7 @@ int main(){
                     printf("ObtenerElemento: Ingrese i j\n");
                     int i,j;
                     scanf("%i %i",&i,&j);
-                    printf("Elemento en %i %i: %f\n",i,j,ObtenerElemento(tabla3, i, j));
+                    printf("Elemento en %i %i: %.4f\n",i,j,ObtenerElemento(tabla3, i, j));
                 }
             }
             if (opcion2 == 2){
@@ -137,7 +137,7 @@ int main(){
                     printf("ObtenerElemento: Ingrese i j\n");
                     int i,j;
                     scanf("%i %i",&i,&j);
-                    printf("Elemento en %i %i: %f\n",i,j,ObtenerElemento(tabla3, i, j));
+                    printf("Elemento en %i %i: %.4f\n",i,j,ObtenerElemento(tabla3, i, j));
                 }
             }
             if (opcion2 == 2){
